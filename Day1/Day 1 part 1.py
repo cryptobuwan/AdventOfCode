@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-# Christopher Carlson
-# COSN 206 Final Exam B Q4
-import numpy
+
 # created a function to compare the list with itself and count the increases
 def compare(dep):
     # the counter for the increases
