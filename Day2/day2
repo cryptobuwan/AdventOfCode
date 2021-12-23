@@ -1,2 +1,16 @@
 #!/usr/bin/env python3
 
+# add up and combine the depth ups and downs
+# add up and multiply the forward to the depth
+def challegne(dir):
+    depth = 0
+    horzion = 0
+    for i in dir:
+        direction = i[:-2]
+        move = i[-1]
+
+
+
+# import and convert data into a workable list
+data = [i for i in open("d2_input").read().splitlines()]
+
