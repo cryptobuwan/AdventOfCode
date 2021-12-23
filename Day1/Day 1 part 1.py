@@ -2,7 +2,7 @@
 
 
 # created a function to compare the list with itself and count the increases
-def compare(dep):
+def challenge1(dep):
     # the counter for the increases
     increase = 0
     # iterate through the list to compare values in the list starting at the beginning 0 on the end of list
@@ -15,10 +15,11 @@ def compare(dep):
     return increase
 
 
-def comp(dep):
+def challenge2(dep):
     increase = 0
 
-    windows = [dep[i:i + 3]]
+    windows = dep[i:i+3] for i in range(len(dep) - 2):
+
     print(windows)
             # increase += 1
     # return increase
@@ -29,4 +30,5 @@ with open("input") as f:
     depth = f.read().splitlines()
 
 # print results, function that runs the stored list depth
-print("Answer:", comp(depth))
+print("Challenge 1: ", challenge1(depth))
+print("Challenge 2: ", challenge2(depth))
