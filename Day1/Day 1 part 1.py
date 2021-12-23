@@ -16,18 +16,24 @@ def challenge1(dep):
 
 
 def challenge2(dep):
-    increase = 0
+    # counter
+    #increase: = 0
 
-    windows = dep[i:i+3] for i in range(len(dep) - 2):
+    for i in range(len(dep)):
+        if len(dep[i:i+3]) == 3:
+            window1 = sum(dep[i:i + 3])
+    # window2 = [sum(dep[i+1:i+4]) for i in range(len(dep) - 2) if len(dep[i:i+3]) == 3]
+    # sum1 = [sum(lst) for lst in window1]
+    # sum2 = [sum(lst) for lst in window2]
+    # comp = [window1[l] < sum2[l] for l in range(len(window1))]
+    print(window1)
 
-    print(windows)
-            # increase += 1
-    # return increase
+    #return increase
 
 # opens the file and stores it in temp var as f
 with open("input") as f:
-    # converts f into a list and removes newlines and stores it in depth
-    depth = f.read().splitlines()
+    # converts f into a list stores it in depth as int
+    depth = [int(i) for i in f.readlines()]
 
 # print results, function that runs the stored list depth
 print("Challenge 1: ", challenge1(depth))
