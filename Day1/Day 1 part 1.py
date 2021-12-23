@@ -17,18 +17,16 @@ def challenge1(dep):
 
 def challenge2(dep):
     # counter
-    #increase: = 0
-
-    for i in range(len(dep)):
-        if len(dep[i:i+3]) == 3:
-            window1 = sum(dep[i:i + 3])
-    # window2 = [sum(dep[i+1:i+4]) for i in range(len(dep) - 2) if len(dep[i:i+3]) == 3]
-    # sum1 = [sum(lst) for lst in window1]
-    # sum2 = [sum(lst) for lst in window2]
-    # comp = [window1[l] < sum2[l] for l in range(len(window1))]
-    print(window1)
-
-    #return increase
+    increase = 0
+    # first window which iterates list creating windows and summing them up
+    window1 = [sum(dep[i:i+3]) for i in range(len(dep)) if len(dep[i:i+3]) == 3]
+    # second window which iterates list creating windows and summing them up
+    window2 = [sum(dep[i+1:i+4]) for i in range(len(dep) - 2) if len(dep[i:i+3]) == 3]
+    # compares first and second window and counts the increases
+    for i in range(len(window1)):
+        increase += window1[i] < window2[i]
+    # returns value
+    return increase
 
 # opens the file and stores it in temp var as f
 with open("input") as f:
