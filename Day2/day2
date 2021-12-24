@@ -2,12 +2,35 @@
 
 def challenge1(movements):
     # create a var that iterates through the list finding requested position and adding the int to the var
-    forward = sum([int(i[-1])for i in movements if 'forward' in i])
-    down = sum([int(i[-1])for i in movements if 'down' in i])
-    up = -sum([int(i[-1])for i in movements if 'up' in i])
-    return forward*(down + up)
+    forward = sum([int(i[-1]) for i in movements if 'forward' in i])
+    down = sum([int(i[-1]) for i in movements if 'down' in i])
+    up = -sum([int(i[-1]) for i in movements if 'up' in i])
+    return forward * (down + up)
+
+
+def challenge2(movements):
+    # store the var
+    aim = 0
+    depth = 0
+    forward = 0
+    for i in movements:
+        # if statement to find forward
+        if 'forward' in i:
+            # increase forward var
+            forward += int(i[-1])
+            # increase depth var by multiplying aim with current forward
+            depth += aim * int(i[-1])
+        # finding up decreases aim
+        elif 'up' in i:
+            aim -= int(i[-1])
+        # finding down increases aim
+        elif 'down' in i:
+            aim += int(i[-1])
+    # returns total depth times total forward
+    return depth * forward
 
 
 # import and convert data into a workable list
 data = [i.strip() for i in open("d2_input").readlines()]
 print("Challenge 1: ", challenge1(data))
+print("Challenge 2: ", challenge2(data))
