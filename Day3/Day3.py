@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from collections import Counter
 
 def challenge1(rate):
     # store Gamma rate
@@ -7,13 +8,13 @@ def challenge1(rate):
     e = ""
     # create columns for bits
     for column in range(12):
-        # adds up all the 1's in the selected column and compares it to total so see if its the common bit
+        # adds up all the 1's in the selected column and compares it to total so see if it's the common bit
         if sum(bit[column] == '1' for bit in rate) < len(rate) // 2:
-            # if its not a common bit this is the result
+            # if it's not a common bit this is the result
             e += "1"
             g += "0"
         else:
-            # if its a common bit this is the result
+            # if it's a common bit this is the result
             g += "1"
             e += "0"
     # returns the dec value of epsilon times the gamma rate
@@ -28,10 +29,9 @@ def challenge2(bits):
         c1 = 0
         c0 = 0
         for bit in bits:
-            c1 = bit[column].count(1)
-            c0 = bit[column].count(0)
+            common = Counter(bit[column]).most_common()
 
-    return c1, c0
+    return common
 
 
 bin_rates = [i for i in open('d3_input')]
