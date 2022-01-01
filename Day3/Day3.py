@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from collections import Counter
 
 def challenge1(rate):
     # store Gamma rate
@@ -21,21 +20,61 @@ def challenge1(rate):
     return int(g, 2) * int(e, 2)
 
 
-def challenge2(bits):
-    oxy, co2 = "", ""
+def counter(bits, pos):
     c1, c0 = 0, 0
-    # create columns for bits
-    for column in range(5):
-        c1 = 0
-        c0 = 0
-        for bit in bits:
-            common = Counter(bit[column]).most_common()
 
+    for bit in bits:
+        if bit[pos] == '1':
+            c1 += 1
+        else:
+            c0 += 1
+    return c1, c0
+
+
+def parser(c1, c0, lis, b):
+    common = []
+    for bit in lis:
+        if c1 >= c0 and bit[b] == '1':
+            common.append(bit)
+        elif c0 > c1 and bit[b] == '0':
+            common.append(bit)
     return common
 
 
-bin_rates = [i for i in open('d3_input')]
+def co2(c1, c0, lis, b):
+    common = []
+    for bit in lis:
+        if c1 < c0 and bit[b] == '1':
+            common.append(bit)
+        elif c0 <= c1 and bit[b] == '0':
+            common.append(bit)
+    return common
+
+
+def oxygen(listed):
+    for i in range(12):
+        count = counter(listed, i)
+        new_list = parser(count[0], count[1], listed, i)
+        listed = new_list
+    return listed[0]
+
+
+def co2reading(listed):
+    for i in range(12):
+        count = counter(listed, i)
+        new_list = co2(count[0], count[1], listed, i)
+        listed = new_list
+        if len(listed) == 1:
+            return listed[0]
+
+
+def challenge2(list):
+    return int(oxygen(list), 2) * int(co2reading(list), 2)
+
+
+with open('d3_input') as f:
+    bin_rates = f.read().splitlines()
 demo = [list(map(str.strip, i)) for i in open('sample')]
 
 print("Challenge 1: ", challenge1(bin_rates))
-print("Challenge 2: ", challenge2(demo))
+print("Challenge 2: ", challenge2(bin_rates))
