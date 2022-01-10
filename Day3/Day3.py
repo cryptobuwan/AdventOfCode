@@ -21,8 +21,9 @@ def challenge1(rate):
 
 
 def counter(bits, pos):
+    # set up counters
     c1, c0 = 0, 0
-
+    # create loop to parsing data to count 1's and 0's
     for bit in bits:
         if bit[pos] == '1':
             c1 += 1
@@ -60,7 +61,9 @@ def oxygen(listed):
 
 
 def co2reading(listed):
+    # create columns of the binaries
     for i in range(12):
+        #
         count = counter(listed, i)
         new_list = co2(count[0], count[1], listed, i)
         listed = new_list
@@ -74,7 +77,7 @@ def challenge2(list):
 
 with open('d3_input') as f:
     bin_rates = f.read().splitlines()
-demo = [list(map(str.strip, i)) for i in open('sample')]
+
 
 print("Challenge 1: ", challenge1(bin_rates))
 print("Challenge 2: ", challenge2(bin_rates))
